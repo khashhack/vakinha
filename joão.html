@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agora sim, férias de verdade | Vaquinha</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    header {
+      background-color: white;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .logo img {
+      height: 36px;
+    }
+
+    .main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 20px;
+      gap: 30px;
+    }
+
+    .left-column {
+      flex: 1 1 500px;
+      max-width: 600px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .right-column {
+      flex: 1 1 300px;
+      max-width: 350px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+      height: fit-content;
+    }
+
+    .info-topo {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 12px;
+    }
+
+    .info-topo .categoria {
+      font-weight: bold;
+      color: #24ca68;
+    }
+
+    .titulo-campanha {
+      font-size: 22px;
+      font-weight: bold;
+      margin-top: 5px;
+      color: #282828;
+    }
+
+    .id-local {
+      font-size: 14px;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    .vaquinha-img {
+      width: 100%;
+      border-radius: 8px;
+      margin: 16px 0 8px 0;
+    }
+
+    .resumo {
+      font-size: 15px;
+      color: #444;
+      margin-bottom: 10px;
+    }
+
+    .descricao {
+      font-size: 15px;
+      color: #333;
+      margin-top: 10px;
+      line-height: 1.6;
+    }
+
+    .descricao strong {
+      color: #24ca68;
+      font-weight: bold;
+    }
+
+    .pix-box {
+      margin-top: 20px;
+      background: #f2f2f2;
+      padding: 12px;
+      border-radius: 8px;
+    }
+
+    .pix-content {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #ffffff;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      margin-top: 6px;
+      transition: background 0.2s ease-in-out;
+    }
+
+    .pix-content:hover {
+      background: #e6ffe9;
+    }
+
+    .pix-chave {
+      color: #333;
+      font-weight: 600;
+      font-size: 14px;
+      word-break: break-word;
+    }
+
+    .icon-copiar {
+      fill: #00a84f;
+    }
+
+    .aviso {
+      display: block;
+      font-size: 12px;
+      margin-top: 5px;
+      color: #666;
+    }
+
+    .compartilhar {
+      font-size: 13px;
+      margin-top: 20px;
+    }
+
+    .compartilhar input {
+      width: 100%;
+      margin-top: 5px;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .progresso {
+      background-color: #e6e6e6;
+      border-radius: 5px;
+      overflow: hidden;
+      height: 8px;
+      margin-bottom: 12px;
+    }
+
+    .progresso-bar {
+      background-color: #24ca68;
+      width: 7%;
+      height: 100%;
+      transition: width 0.3s ease-in-out;
+    }
+
+    .valor-arrecadado {
+      font-size: 20px;
+      font-weight: bold;
+      color: #24ca68;
+    }
+
+    .meta,
+    .apoiadores {
+      font-size: 14px;
+      color: #444;
+    }
+
+    .botao-ajudar {
+      display: block;
+      background-color: #00c271;
+      color: white;
+      padding: 14px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      text-align: center;
+      margin: 16px 0;
+      text-decoration: none;
+    }
+
+    .criador {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      margin-top: 10px;
+      color: #555;
+    }
+
+    .criador-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: #8300c2;
+      color: white;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @media (max-width: 768px) {
+      .main {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="logo-vakinha.png" alt="Vakinha Logo">
+    </div>
+  </header>
+
+  <div class="main">
+    <div class="left-column">
+      <div class="info-topo">
+        <div class="categoria">SONHOS / OUTROS</div>
+        <div class="titulo-campanha">Agora sim, férias de verdade.</div>
+        <div class="id-local">ID: 5413609 — PETRÓPOLIS / RIO DE JANEIRO</div>
+      </div>
+
+      <img class="vaquinha-img" src="meajuda.webp" alt="Imagem da vaquinha">
+
+      <p class="resumo">
+        Seja a primeira pessoa a dar um coração para esta vaquinha! 💚
+      </p>
+
+      <div class="descricao">
+        <div class="pix-box">
+          <p>Você pode ajudar via Pix usando a chave:</p>
+          <div class="pix-content" onclick="copiarPix()">
+            <span class="pix-chave" id="pixChave">488afc63-5194-4ed7-91ed-e39aa57446ba</span>
+            <svg viewBox="350 0 766 758" width="20" height="20" class="icon-copiar">
+              <title>Copiar chave Pix</title>
+              <path d="M806.32,188.44H597.7a34.87,34.87,0,0,0-34.84,34.73V466.71H597.7V223.17H806.32Z"></path>
+              <path d="M754.26,285.3H545.64A34.87,34.87,0,0,0,510.8,320V598.26a34.88,34.88,0,0,0,34.84,34.84H754.26a34.88,34.88,0,0,0,34.84-34.84V320A34.88,34.88,0,0,0,754.26,285.3Zm0,312.96H545.64V320H754.26Z"></path>
+            </svg>
+          </div>
+          <small class="aviso">Clique para copiar a chave Pix 💚</small>
+        </div>
+        <p style="margin-top:20px;">Olá! Me chamo João Filipe, tenho 7 anos. No dia 20 de janeiro comecei a sentir uma dor na perna esquerda, fui ao médico com minha mãe e a princípio segundo o diagnóstico foi só uma dor muscular. No dia 24 de janeiro tínhamos planejado nossos tão sonhados 10 dias de férias, foi aí que infelizmente tivemos que interromper nossas férias, quando depois das dores persistirem e de ter passado por mais dois hospitais fui diagnosticado com osteomielite, uma infecção no osso da perna precisando então interromper nossas férias.</p>
+        <p>A princípio eram só de 7 a 10 dias de antibiótico, mas infelizmente pela gravidade do quadro esse prazo precisou se estender. Hoje estou a 56 dias internado e ainda não tenho uma previsão de alta.</p>
+        <p>Meu desejo é que esse processo passe logo para que eu e minha família possamos então curtir as nossas férias tão esperadas, com a ajuda da vaquinha.</p>
+      </div>
+
+      <div class="compartilhar">
+        <strong>COMPARTILHE ESTA VAQUINHA</strong>
+        <input type="text" value="https://www.vakinha.com.br/5412608" readonly>
+      </div>
+    </div>
+
+    <div class="right-column">
+      <div class="progresso">
+        <div class="progresso-bar" style="width: 7%;"></div>
+      </div>
+      <div class="valor-arrecadado">R$ 1.000,00</div>
+      <div class="meta">Meta R$ 15.000,00</div>
+      <div class="apoiadores">Apoiadores 10</div>
+
+      <a href="checkout.html" class="botao-ajudar">Quero Ajudar</a>
+
+      <div class="criador">
+        <div class="criador-icon">KV</div>
+        Kauane Vargas<br>
+        Ativo(a) no Vakinha desde março/2025<br>
+        1 vaquinha criada
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function copiarPix() {
+      const chave = document.getElementById("pixChave").innerText;
+      navigator.clipboard.writeText(chave).then(() => {
+        alert("Chave Pix copiada com sucesso!");
+      });
+    }
+  </script>
+<footer style="text-align:center; padding: 20px 10px; font-size: 14px; color: #777;">
+  © 2025 - Todos direitos reservados
+</footer>
+
+</body>
+</html>
